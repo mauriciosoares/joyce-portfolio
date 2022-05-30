@@ -1,0 +1,26 @@
+{
+  "name": "joyce-portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "generate-images": "npm run generate-thumb && npm run generate-webp",
+    "generate-thumb": "rm -rf ./images/gallery/thumb && mkdir ./images/gallery/thumb && cd ./images/gallery/full && for i in *.jpg; do convert -thumbnail 500 $i ../thumb/$i; done;",
+    "generate-webp": "npm run generate-webp:full && npm run generate-webp:thumb",
+    "generate-webp:full": "`for file in ./images/gallery/full/*; do cwebp -q 50 \"$file\" -o \"${file%.*}.webp\"; done`",
+    "generate-webp:thumb": "`for file in ./images/gallery/thumb/*; do cwebp -q 50 \"$file\" -o \"${file%.*}.webp\"; done`"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "minimasonry": "^1.3.0"
+  },
+  "devDependencies": {
+    "sass": "^1.52.1",
+    "vite": "^2.9.9",
+    "vite-plugin-html": "^3.2.0"
+  }
+}
