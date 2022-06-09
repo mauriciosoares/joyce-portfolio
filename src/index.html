@@ -73,7 +73,8 @@
           width="<%= photo.width %>"
           height="<%= photo.height %>"
         /> -->
-        <picture data-image-id="<%= photo.id %>">
+        <a href="#<%= photo.id %>" data-image-id="<%= photo.id %>">
+        <picture >
           <source
             srcset="/images/gallery/full/thumb/<%= photo.id %>.webp"
             type="image/webp"
@@ -89,6 +90,7 @@
             height="<%= photo.height %>"
           />
         </picture>
+      </a>
       </figure>
       <% } %>
     </div>
