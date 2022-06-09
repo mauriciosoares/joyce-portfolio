@@ -1,5 +1,6 @@
 let currentImageId = null
 let imageIds = []
+
 let modalImageNode = document.querySelector('[data-modal-image]')
 
 function closeModal() {
@@ -37,14 +38,13 @@ Array.from(document.querySelectorAll("[data-gallery-nav]")).forEach((img) => {
     let nextImage
     
     if (galleryNav === 'next') {
-      nextImage = imageIds[imageIds.indexOf(currentImageId) + 1] || '1'
+      nextImage = imageIds[imageIds.indexOf(currentImageId) + 1] || imageIds[0]
       // get indexOf +1
       // if undefined, show on index 0
     } else {
-      nextImage = imageIds[imageIds.indexOf(currentImageId) - 1] || '5'
+      nextImage = imageIds[imageIds.indexOf(currentImageId) - 1] || imageIds[imageIds.length - 1]
     }
 
-    console.log(nextImage)
     setModalImage(nextImage)
   });
 });
