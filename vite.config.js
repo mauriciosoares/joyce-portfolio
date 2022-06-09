@@ -8,7 +8,7 @@ const data = fs.readdirSync(path.join(__dirname, 'images/gallery/full'))
 
 
 const photos = data.filter(file => path.extname(file).toLowerCase() === '.jpg').map(image => {
-  const dimentions = sizeOf(path.join(__dirname, 'images/gallery/full', image))
+  const dimentions = sizeOf(path.join(__dirname, 'images/gallery/full/thumb', image))
 
   return {
     id: image.split('.')[0],
