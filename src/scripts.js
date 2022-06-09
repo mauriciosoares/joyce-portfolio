@@ -12,6 +12,9 @@ document.querySelector('[data-modal-close]').addEventListener('click', closeModa
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal()
+
+  if (e.key === 'ArrowRight') document.querySelector('[data-gallery-nav="next"]').click()
+  if (e.key === 'ArrowLeft') document.querySelector('[data-gallery-nav="prev"]').click()
 })
 
 function setModalImage(imageId) {
@@ -19,7 +22,9 @@ function setModalImage(imageId) {
   document.body.classList.add('show-modal')
   currentImageId = imageId
 
-  modalImageNode.style.backgroundImage = `url(/images/gallery/full/${imageId}.jpg)`
+  const imageUrl = new URL(`/images/gallery/full/${imageId}.jpg`, import.meta.url).href
+
+  modalImageNode.style.backgroundImage = `url(${imageUrl})`
 }
 
 Array.from(document.querySelectorAll("[data-image-id]")).forEach((img) => {

@@ -8,12 +8,11 @@
     "dev": "vite",
     "build": "vite build",
     "generate-images": "npm run generate-thumb && npm run generate-webp && npm run optimize-images",
-    "generate-thumb-old": "rm -rf ./images/gallery/thumb && mkdir ./images/gallery/thumb && cd ./images/gallery/full && for i in *.jpg; do convert -thumbnail 500 $i ../thumb/$i; done;",
-    "generate-thumb": "cd ./images/gallery/full && mogrify -format jpg -path thumb -resize 500 -quality 100 *.jpg",
+    "generate-thumb": "cd ./src/images/gallery/full && mogrify -format jpg -path thumb -resize 600 -quality 100 *.jpg",
     "generate-webp": "npm run generate-webp:full && npm run generate-webp:thumb",
-    "generate-webp:full": "rm -f images/gallery/full/*.webp && `for file in ./images/gallery/full/*.jpg; do cwebp -q 100 \"$file\" -o \"${file%.*}.webp\"; done`",
-    "generate-webp:thumb": "rm -f images/gallery/full/thumb/*.webp && `for file in ./images/gallery/full/thumb/*.jpg; do cwebp -q 100 \"$file\" -o \"${file%.*}.webp\"; done`",
-    "optimize-images": "imageoptim ./images/gallery/full/"
+    "generate-webp:full": "rm -f src/images/gallery/full/*.webp && `for file in ./src/images/gallery/full/*.jpg; do cwebp -q 100 \"$file\" -o \"${file%.*}.webp\"; done`",
+    "generate-webp:thumb": "rm -f src/images/gallery/full/thumb/*.webp && `for file in ./src/images/gallery/full/thumb/*.jpg; do cwebp -q 100 \"$file\" -o \"${file%.*}.webp\"; done`",
+    "optimize-images": "imageoptim ./src/images/gallery/full/"
   },
   "author": "",
   "license": "ISC",

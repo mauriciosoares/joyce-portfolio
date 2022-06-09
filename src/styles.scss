@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  font-family: 'Work Sans', sans-serif;
-  color: #222222;
+  font-family: 'Lato', sans-serif;
+  color: #595959;
 }
 
 body {
@@ -10,7 +10,6 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
   font-size: 1.1em;
   cursor: pointer;
 }
@@ -60,6 +59,7 @@ figure {
 }
 
 .main-header {
+  z-index: 1;
   position: sticky;
   display: flex;
   align-items: center;
@@ -67,6 +67,10 @@ figure {
   padding: 20px 10px;
   top: 0;
   background-color: white;
+
+  h1 {
+    font-weight: lighter;
+  }
 
   .sub-menu {
     position: absolute;
@@ -147,6 +151,7 @@ body.show-modal {
 
   i {
     transition: .3s;
+    opacity: 0.7;
   }
 }
 
@@ -171,4 +176,10 @@ body.show-modal {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+
+@media (max-width: 599px) {
+  .main-header {
+    padding: 0px 10px;
+  }
 }

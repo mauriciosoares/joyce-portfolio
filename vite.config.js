@@ -21,6 +21,9 @@ const photos = data.filter(file => path.extname(file).toLowerCase() === '.jpg').
 
 export default defineConfig({
   root: 'src',
+  build: {
+    outDir: __dirname,
+  },
   plugins: [
     createHtmlPlugin({
       minify: true,
