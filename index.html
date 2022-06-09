@@ -24,7 +24,7 @@
     <script
       src="https://kit.fontawesome.com/1a07ebd204.js"
       crossorigin="anonymous"
-    ></script>
+    ></script> 
   </head>
   <body>
     <header class="main-header">
@@ -48,12 +48,12 @@
         <div class="link-container">
           <a href="#">CONTACT</a>
         </div>
-        <div class="link-container">
+        <!-- <div class="link-container">
           <a href="#"><i class="fa-brands fa-instagram"></i></a>
         </div>
         <div class="link-container">
           <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
+        </div> -->
       </div>
     </header>
     <div class="container">
@@ -61,22 +61,22 @@
       <figure>
         <!-- <img
           data-image-id="<%= i + 1 %>"
-          src="/images/gallery/thumb/<%= photo.id %>"
+          src="/images/gallery/full/thumb/<%= photo.id %>"
           loading="lazy"
           width="<%= photo.width %>"
           height="<%= photo.height %>"
         /> -->
         <picture data-image-id="<%= photo.id %>">
           <source
-            srcset="/images/gallery/thumb/<%= photo.id %>.webp"
+            srcset="/images/gallery/full/thumb/<%= photo.id %>.webp"
             type="image/webp"
           />
           <source
-            srcset="/images/gallery/thumb/<%= photo.id %>.jpg"
+            srcset="/images/gallery/full/thumb/<%= photo.id %>.jpg"
             type="image/jpeg"
           />
           <img
-            src="/images/gallery/thumb/<%= photo.id %>.jpg"
+            src="/images/gallery/full/thumb/<%= photo.id %>.jpg"
             alt="<%= photo.alt %>>"
             width="<%= photo.width %>"
             height="<%= photo.height %>"
