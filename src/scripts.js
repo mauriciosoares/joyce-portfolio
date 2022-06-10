@@ -25,6 +25,9 @@ document.addEventListener("keydown", (e) => {
 });
 
 function setModalImage(imageId) {
+  if (imageIds.indexOf(imageId) === -1) {
+    return closeModal()
+  }
   history.pushState(null, null, `#${imageId}`);
   const img = document.querySelector(`[data-image-id="${imageId}"]`);
   document.body.classList.add("show-modal");
