@@ -1,8 +1,9 @@
-import { defineConfig } from "vite";
+import { mergeConfig } from "vite";
+import defaultViteConfig from "../shared/vite.config";
 import { createHtmlPlugin } from "vite-plugin-html";
 import fs from "fs";
-import path, { resolve } from "path";
 import sizeOf from "image-size";
+import path from "path";
 
 const data = fs.readdirSync(path.join(__dirname, "src/images/gallery/full"));
 
@@ -21,34 +22,21 @@ const photos = data
     };
   });
 
-export default defineConfig({
-  root: "src",
-  base: "",
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import "@/styles.scss";`
-      }
-    },
-  },
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, "../shared"),
-    },
-  },
-
+export default mergeConfig(defaultViteConfig, {
   build: {
-    outDir: path.resolve(__dirname, "../../c/mauricio-soares/"),
-    // assetsDir: 'c/mauricio-soares/assets/'
+    outDir: path.resolve(__dirname, "../../c/mauricio-soares-1665345136230/"),
   },
   plugins: [
     createHtmlPlugin({
       minify: true,
       inject: {
+        ejsOptions: {
+          root: "../../",
+        },
         data: {
           photos: photos,
-          client: "Mauricio Soares",
-          imagesLimit: 5
+          client: "Mauricio",
+          imagesLimit: 5,
         },
       },
     }),

@@ -6,63 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Joyce Machado - Fotografa em Itupeva - Fotografia</title>
-    <meta name="keywords" content="fotografia, fotografa, fotos, joyce, portrait, itupeva, ">
-    <meta name="description"
-      content="Fotografa em Itupeva - Especialista em Ensaios Fotograficos - Fotografia">
+    <meta
+      name="keywords"
+      content="fotografia, fotografa, fotos, joyce, portrait, itupeva, "
+    />
+    <meta
+      name="description"
+      content="Fotografa em Itupeva - Especialista em Ensaios Fotograficos - Fotografia"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap" rel="stylesheet">
-      
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="./normalize.css" />
     <link rel="stylesheet" href="./styles.scss" />
-    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon" />
     <script
       src="https://kit.fontawesome.com/1a07ebd204.js"
       crossorigin="anonymous"
-    ></script> 
+    ></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDF4VCXQF2"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BDF4VCXQF2"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'G-BDF4VCXQF2');
+      gtag("config", "G-BDF4VCXQF2");
     </script>
   </head>
   <body>
-    <header class="main-header">
-      <h1>Joyce Machado</h1>
-
-      <div class="main-header-links">
-        <!-- <div class="link-container has-sub-menu">
-          <a> PORTFOLIO <i class="fa-solid fa-chevron-down"></i> </a>
-          <div class="sub-menu">
-            <a href="#"> SUB 1 </a>
-            <a href="#"> SUB 2 </a>
-            <a href="#"> SUB 3 </a>
-          </div>
-        </div>
-        <div class="link-container">
-          <a href="#">PACOTES</a>
-        </div> -->
-        <div class="link-container">
-          <a href="https://www.instagram.com/joycegito/" target="_blank">INSTAGRAM</a>
-        </div>
-        <div class="link-container">
-          <a href="https://api.whatsapp.com/send?phone=5511932244663" target="_blank">CONTACT</a>
-        </div>
-        <!-- <div class="link-container">
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-        <div class="link-container">
-          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        </div> -->
-      </div>
-    </header>
+    <%- include('/common/header.ejs') %>
     <div class="container">
       <% for(var i = 0; i < photos.length; i++) { %> <% var photo = photos[i] %>
       <figure>
@@ -74,23 +58,23 @@
           height="<%= photo.height %>"
         /> -->
         <a href="#<%= photo.id %>" data-image-id="<%= photo.id %>">
-        <picture >
-          <source
-            srcset="/images/gallery/full/thumb/<%= photo.id %>.webp"
-            type="image/webp"
-          />
-          <source
-            srcset="/images/gallery/full/thumb/<%= photo.id %>.jpg"
-            type="image/jpeg"
-          />
-          <img
-            src="/images/gallery/full/thumb/<%= photo.id %>.jpg"
-            alt="<%= photo.alt %>>"
-            width="<%= photo.width %>"
-            height="<%= photo.height %>"
-          />
-        </picture>
-      </a>
+          <picture>
+            <source
+              srcset="/images/gallery/full/thumb/<%= photo.id %>.webp"
+              type="image/webp"
+            />
+            <source
+              srcset="/images/gallery/full/thumb/<%= photo.id %>.jpg"
+              type="image/jpeg"
+            />
+            <img
+              src="/images/gallery/full/thumb/<%= photo.id %>.jpg"
+              alt="<%= photo.alt %>>"
+              width="<%= photo.width %>"
+              height="<%= photo.height %>"
+            />
+          </picture>
+        </a>
       </figure>
       <% } %>
     </div>

@@ -3,6 +3,10 @@ let imageIds = [];
 let modalIsOpen = false;
 
 let modalImageNode = document.querySelector("[data-modal-image]");
+let modalCheckboxNode = document.querySelector(
+  ".modal-container .select-photo"
+);
+const submitButton = document.querySelector("[data-submit-images]");
 
 function closeModal() {
   modalImageNode.innerHTML = "";
@@ -26,10 +30,9 @@ document.addEventListener("keydown", (e) => {
 
 function setModalImage(imageId) {
   if (imageIds.indexOf(imageId) === -1) {
-    return closeModal()
+    return closeModal();
   }
   history.pushState(null, null, `#${imageId}`);
-  const img = document.querySelector(`[data-image-id="${imageId}"]`);
   document.body.classList.add("show-modal");
   modalIsOpen = true;
   currentImageId = imageId;
@@ -38,6 +41,9 @@ function setModalImage(imageId) {
     `/images/gallery/full/${imageId}.jpg`,
     import.meta.url
   ).href;
+
+  modalCheckboxNode.setAttribute("value", imageId);
+  updateCheckboxes();
 
   modalImageNode.style.backgroundImage = `url(${imageUrl})`;
 }
@@ -76,28 +82,69 @@ document.addEventListener("readystatechange", () => {
   }
 });
 
-const selectedImagesCountElement = document.querySelector('#selected-images-count')
-let selectedImages = JSON.parse(localStorage.getItem('selected-images')) || []
+const selectedImagesCountElement = document.querySelector(
+  "#selected-images-count"
+);
 
-if (selectedImages.length > 0) {
-  selectedImages.forEach(imageId => {
-    document.querySelector(`.select-photo[value="${imageId}"]`).checked = true
-  })
+let selectedImages = JSON.parse(localStorage.getItem("selected-images")) || [];
 
-  selectedImagesCountElement.textContent = selectedImages.length
+function updateCheckboxes() {
+  document
+    .querySelectorAll(`.select-photo`)
+    .forEach((node) => (node.checked = false));
+  selectedImages = JSON.parse(localStorage.getItem("selected-images")) || [];
+  if (selectedImages.length > 0) {
+    selectedImages.forEach((imageId) => {
+      document
+        .querySelectorAll(`.select-photo[value="${imageId}"]`)
+        .forEach((node) => (node.checked = true));
+    });
+
+    selectedImagesCountElement.textContent = selectedImages.length;
+  }
 }
 
-document.querySelectorAll('.select-photo').forEach(element => {
-  element.addEventListener('change', function() {
-    let s = parseInt(selectedImagesCountElement.textContent)
+updateCheckboxes();
+
+document.querySelectorAll(".select-photo").forEach((element) => {
+  element.addEventListener("change", function () {
+    let s = parseInt(selectedImagesCountElement.textContent);
     if (this.checked) {
-      selectedImages.push(this.value)
+      selectedImages.push(this.value);
     } else {
-      selectedImages = selectedImages.filter((id) => id !== this.value)
+      selectedImages = selectedImages.filter((id) => id !== this.value);
     }
 
-    localStorage.setItem("selected-images", JSON.stringify(selectedImages))
+    localStorage.setItem("selected-images", JSON.stringify(selectedImages));
 
-    selectedImagesCountElement.textContent = selectedImages.length
-  })
-})
+    selectedImagesCountElement.textContent = selectedImages.length;
+    updateCheckboxes();
+
+    checkSubmitButton();
+  });
+});
+
+function checkSubmitButton() {
+  selectedImages = JSON.parse(localStorage.getItem("selected-images")) || [];
+  if (selectedImages.length >= window.imageLimit) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+}
+checkSubmitButton();
+
+submitButton.addEventListener("click", () => {
+  selectedImages = JSON.parse(localStorage.getItem("selected-images")) || [];
+
+  const message = `Olá Joyce tudo bem?%0a
+  %0a
+Essas foram as fotos que eu escolhi:%0a
+%0a
+${selectedImages.map((id) => `${id}%0a`).join("")}`;
+
+  window.open(
+    `https://api.whatsapp.com/send?phone=5511932244663&text=${message}`,
+    "_blank"
+  );
+});
